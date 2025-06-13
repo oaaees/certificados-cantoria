@@ -1,0 +1,122 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const recipientNameElem = document.getElementById('recipientName');
+    const courseNameElem = document.getElementById('courseName');
+    const completionDateElem = document.getElementById('completionDate');
+
+    const inputNameElem = document.getElementById('inputName');
+    const inputCourseElem = document.getElementById('inputCourse');
+    const inputDateElem = document.getElementById('inputDate');
+    const generateUrlButton = document.getElementById('generateUrlButton');
+    const generatedUrlElem = document.getElementById('generatedUrl');
+    const copyUrlButton = document.getElementById('copyUrlButton');
+    const copyMessageElem = document.getElementById('copyMessage');
+    const downloadPdfButton = document.getElementById('downloadPdfButton');
+
+    // Function to update certificate from data object
+    function updateCertificate(data) {
+        const name = data.name || 'ERROR';
+        const course = data.course || 'Outstanding Program';
+        const date = data.date || new Date().toISOString().slice(0, 10);
+
+        recipientNameElem.textContent = name;
+        // courseNameElem.textContent = course;
+        // completionDateElem.textContent = new Date(date).toLocaleDateString('en-US', {
+        //     year: 'numeric',
+        //     month: 'long',
+        //     day: 'numeric'
+        // });
+    }
+
+    // Parse URL on load
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('data');
+
+    if (encodedData) {
+        try {
+            // Decode Base64 and parse JSON
+            const decodedString = atob(encodedData);
+            const data = JSON.parse(decodedString);
+            updateCertificate(data);
+
+            // Pre-fill input fields if data was loaded from URL
+            inputNameElem.value = data.name || '';
+            inputCourseElem.value = data.course || '';
+            inputDateElem.value = data.date || '';
+
+        } catch (e) {
+            console.error("Error decoding or parsing URL data:", e);
+            // Fallback to defaults if decoding fails
+            updateCertificate({});
+        }
+    } else {
+        // Set default values and pre-fill date input if no encoded data
+        updateCertificate({});
+        inputDateElem.value = new Date().toISOString().slice(0, 10);
+    }
+
+    // Event listener for generating URL
+    generateUrlButton.addEventListener('click', () => {
+        const data = {
+            name: inputNameElem.value || 'ERROR',
+            course: inputCourseElem.value || 'Outstanding Program',
+            date: inputDateElem.value || new Date().toISOString().slice(0, 10)
+        };
+
+        const jsonString = JSON.stringify(data);
+        const encodedString = btoa(jsonString); // Base64 encode
+
+        // Construct the new URL. Get base path (e.g., 'index.html' or just '/')
+        const baseUrl = window.location.origin + window.location.pathname.split('?')[0];
+        const newUrl = `${baseUrl}?data=${encodedString}`;
+        generatedUrlElem.value = newUrl;
+
+        // Update the certificate display live
+        updateCertificate(data);
+    });
+
+    // Event listener for copying URL
+    copyUrlButton.addEventListener('click', () => {
+        generatedUrlElem.select();
+        document.execCommand('copy');
+        copyMessageElem.classList.remove('hidden');
+        setTimeout(() => {
+            copyMessageElem.classList.add('hidden');
+        }, 2000);
+    });
+
+    // Event listener for PDF download
+    downloadPdfButton.addEventListener('click', () => {
+        const certificateElement = document.getElementById('certificate');
+        // Clone the element to avoid modifying the displayed certificate for PDF generation
+        const clonedElement = certificateElement.cloneNode(true);
+
+        // Adjust padding and margin for better PDF output if needed (can be more or less than original)
+        clonedElement.style.padding = '30px';
+        clonedElement.style.marginBottom = '0';
+        clonedElement.style.border = 'none'; // Remove visible border for PDF if the background image has it
+
+        // Append cloned element to body temporarily to ensure correct rendering by html2canvas
+        document.body.appendChild(clonedElement);
+
+        let result = html2pdf().set({
+            margin: [20, 10, 20, 10], // Top, Left, Bottom, Right margin
+            filename: 'certificate_of_completion.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: {
+                allowTaint: true,
+                scale: 2, // Higher scale for better quality
+                logging: true,
+                scrollY: -window.scrollY // Capture content that is off-screen correctly
+            },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+        }).from(clonedElement).save().finally(() => {
+            // Remove the cloned element after PDF generation
+            document.body.removeChild(clonedElement);
+        });
+
+        console.log(result);
+    });
+
+    // Set default date for input field
+    inputDateElem.value = new Date().toISOString().slice(0, 10);
+});

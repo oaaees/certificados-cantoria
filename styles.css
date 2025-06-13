@@ -1,0 +1,72 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6; /* Light gray background */
+    display: flex;
+    flex-direction: column; /* Allow content to stack */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+#backgroundImage {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire container */
+    z-index: -1; /* Place behind other content */
+}
+
+#recipientName {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    translate: -50%;
+    width: 100%;
+}
+
+.certificate-container {
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Ensure no overflow issues with pseudo-elements if added */
+    margin-bottom: 30px; /* Space between certificate and controls */
+}
+
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .certificate-container {
+        padding: 20px;
+        border-width: 5px;
+    }
+    .certificate-container::before,
+    .certificate-container::after {
+        width: 40px;
+        height: 40px;
+    }
+    h1 {
+        font-size: 2.5rem !important; /* Smaller font for title */
+    }
+    h2 {
+        font-size: 1.5rem !important; /* Smaller font for name */
+    }
+    p {
+        font-size: 1rem !important; /* Smaller font for text */
+    }
+}
+.control-panel {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    max-width: 900px;
+    width: 100%;
+}

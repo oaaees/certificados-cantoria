@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Completion</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- html2pdf.js CDN for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="certificate-container" id="certificate">
+        <img id="backgroundImage" src="Certificado Reconocimiento.png" alt="Background Image" >
+        <h2 id="recipientName" class="text-4xl font-bold text-gray-900 mb-6 italic">Johan Paredes</h2>
+    </div>
+
+    <div class="control-panel">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Certificate Controls</h3>
+
+        <!-- PDF Download Button -->
+        <button id="downloadPdfButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out mb-8">
+            Download Certificate as PDF
+        </button>
+
+        <h4 class="text-xl font-semibold text-gray-700 mb-3">Generate Encoded URL:</h4>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+                <label for="inputName" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                <input type="text" id="inputName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter recipient name">
+            </div>
+            <div>
+                <label for="inputCourse" class="block text-gray-700 text-sm font-bold mb-2">Course:</label>
+                <input type="text" id="inputCourse" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter course name">
+            </div>
+            <div>
+                <label for="inputDate" class="block text-gray-700 text-sm font-bold mb-2">Date (YYYY-MM-DD):</label>
+                <input type="date" id="inputDate" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+        </div>
+        <button id="generateUrlButton" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+            Generate Encoded URL
+        </button>
+        <div class="mt-4">
+            <label for="generatedUrl" class="block text-gray-700 text-sm font-bold mb-2">Generated URL:</label>
+            <input type="text" id="generatedUrl" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 cursor-not-allowed" readonly>
+            <button id="copyUrlButton" class="mt-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-1 px-3 rounded-lg text-sm">Copy URL</button>
+            <span id="copyMessage" class="ml-2 text-sm text-green-600 hidden">Copied!</span>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
