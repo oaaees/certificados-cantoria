@@ -90,20 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clone the element to avoid modifying the displayed certificate for PDF generation
         const clonedElement = certificateElement.cloneNode(true);
 
-        // Adjust padding and margin for better PDF output if needed (can be more or less than original)
-        clonedElement.style.padding = '30px';
-        clonedElement.style.marginBottom = '0';
-        clonedElement.style.border = 'none'; // Remove visible border for PDF if the background image has it
-
         // Append cloned element to body temporarily to ensure correct rendering by html2canvas
         document.body.appendChild(clonedElement);
 
-        let result = html2pdf().set({
-            margin: [20, 10, 20, 10], // Top, Left, Bottom, Right margin
-            filename: 'certificate_of_completion.pdf',
+        let result = html2pdf().set({ // Top, Left, Bottom, Right margin
+            filename: 'CertificadoCantoria.pdf',
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: {
-                allowTaint: true,
                 scale: 2, // Higher scale for better quality
                 logging: true,
                 scrollY: -window.scrollY // Capture content that is off-screen correctly
