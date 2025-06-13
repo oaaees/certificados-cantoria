@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 logging: true,
                 scrollY: -window.scrollY, // Capture content that is off-screen correctly
                 width: 1122,
+                x: 0,
                 height: 793 // A4 landscape dimensions in pixels at 96 DPI
             },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }

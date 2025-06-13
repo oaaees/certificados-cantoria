@@ -42,7 +42,7 @@ body {
 /* Styles for the cloned element during PDF generation */
 .pdf-capture-temp {
     position: fixed;
-    left: 0; /* Move off-screen */
+    left: -9999px; /* Move off-screen */
     top: 0;
     max-width: 1122px !important; /* Allow full width for PDF capture */
     margin: 0 !important;
