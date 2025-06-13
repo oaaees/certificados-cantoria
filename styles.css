@@ -39,6 +39,22 @@ body {
     margin-bottom: 30px; /* Space between certificate and controls */
 }
 
+/* Styles for the cloned element during PDF generation */
+.pdf-capture-temp {
+    position: fixed;
+    left: -9999px; /* Move off-screen */
+    top: 0;
+    margin: 0 !important;
+    padding: 0 !important; /* Remove any extra padding that might affect A4 sizing */
+    box-sizing: border-box; /* Maintain box model */
+    box-shadow: none !important; /* Remove shadows for PDF capture */
+    /* Set explicit dimensions for A4 landscape to guide html2canvas */
+    /* A4 landscape at 96 DPI is approx 1122px width x 793px height */
+    width: 1122px !important; /* Targeted width for PDF capture */
+    height: 793px; /* Targeted height for PDF capture */
+    overflow: hidden; /* Prevent scrollbars during capture */
+}
+
 
 
 /* Responsive adjustments for smaller screens */

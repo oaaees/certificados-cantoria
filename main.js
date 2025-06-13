@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const certificateElement = document.getElementById('certificate');
         // Clone the element to avoid modifying the displayed certificate for PDF generation
         const clonedElement = certificateElement.cloneNode(true);
+        clonedElement.classList.add('pdf-capture-temp'); // Add a class for specific styles if needed
 
         // Append cloned element to body temporarily to ensure correct rendering by html2canvas
         document.body.appendChild(clonedElement);
@@ -99,7 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
             html2canvas: {
                 scale: 4, // Higher scale for better quality
                 logging: true,
-                scrollY: -window.scrollY // Capture content that is off-screen correctly
+                scrollY: -window.scrollY, // Capture content that is off-screen correctly
+                width: 1122,
+                height: 793 // A4 landscape dimensions in pixels at 96 DPI
             },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
         }).from(clonedElement).save().finally(() => {
