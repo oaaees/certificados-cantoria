@@ -44,7 +44,7 @@ body {
     position: fixed;
     left: 0; /* Move off-screen */
     top: 0;
-    max-width: auto !important; /* Allow full width for PDF capture */
+    max-width: 1122px !important; /* Allow full width for PDF capture */
     margin: 0 !important;
     padding: 0 !important; /* Remove any extra padding that might affect A4 sizing */
     box-sizing: border-box; /* Maintain box model */
