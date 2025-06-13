@@ -93,11 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Append cloned element to body temporarily to ensure correct rendering by html2canvas
         document.body.appendChild(clonedElement);
 
-        let result = html2pdf().set({ // Top, Left, Bottom, Right margin
+        let result = html2pdf().set({
             filename: 'CertificadoCantoria.pdf',
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: {
-                scale: 2, // Higher scale for better quality
+                scale: 4, // Higher scale for better quality
                 logging: true,
                 scrollY: -window.scrollY // Capture content that is off-screen correctly
             },
