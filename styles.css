@@ -59,46 +59,14 @@ body {
 
 
 /* Responsive adjustments for smaller screens */
-@media (max-width: 320px) {
+@media (max-width: 1440px) {
     h2 {
-        font-size: 0.8rem !important; /* Smaller font for name */
-    }
-
-    #recipientName {
-        top: 41%;
-    }
-}
-
-@media (max-width: 376px) {
-    h2 {
-        font-size: 1rem !important; /* Smaller font for name */
+        font-size: 2rem !important; /* Smaller font for name */
     }
 
     #recipientName {
         position: absolute;
-        top: 43%;
-    }
-}
-
-@media (max-width: 426px) {
-    h2 {
-        font-size: 1.1rem !important; /* Smaller font for name */
-    }
-
-    #recipientName {
-        position: absolute;
-        top: 44%;
-    }
-}
-
-@media (max-width: 769px) {
-    h2 {
-        font-size: 1.7rem !important; /* Smaller font for name */
-    }
-
-    #recipientName {
-        position: absolute;
-        top: 48%;
+        top: 49%;
     }
 }
 
@@ -113,14 +81,46 @@ body {
     }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 769px) {
     h2 {
-        font-size: 2rem !important; /* Smaller font for name */
+        font-size: 1.7rem !important; /* Smaller font for name */
     }
 
     #recipientName {
         position: absolute;
-        top: 49%;
+        top: 48%;
+    }
+}
+
+@media (max-width: 426px) {
+    h2 {
+        font-size: 1.1rem !important; /* Smaller font for name */
+    }
+
+    #recipientName {
+        position: absolute;
+        top: 44%;
+    }
+}
+
+@media (max-width: 376px) {
+    h2 {
+        font-size: 1rem !important; /* Smaller font for name */
+    }
+
+    #recipientName {
+        position: absolute;
+        top: 43%;
+    }
+}
+
+@media (max-width: 320px) {
+    h2 {
+        font-size: 0.8rem !important; /* Smaller font for name */
+    }
+
+    #recipientName {
+        top: 41%;
     }
 }
 
