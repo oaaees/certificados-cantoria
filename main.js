@@ -103,7 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollY: -window.scrollY, // Capture content that is off-screen correctly
                 width: clonedElement.offsetWidth,
                 height: clonedElement.offsetHeight,
-                x: 0
+                x: 0,
+                windowWidth: clonedElement.offsetWidth,
+                windowHeight: clonedElement.offsetHeight,
             },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
         }).from(clonedElement).save().finally(() => {
