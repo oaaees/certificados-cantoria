@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const recipientNameElem = document.getElementById('recipientName');
-    const courseNameElem = document.getElementById('courseName');
-    const completionDateElem = document.getElementById('completionDate');
+    const yearsElem = document.getElementById('years');
 
     const inputNameElem = document.getElementById('inputName');
-    const inputCourseElem = document.getElementById('inputCourse');
-    const inputDateElem = document.getElementById('inputDate');
+    const inputYearsElem = document.getElementById('inputYears');
     const generateUrlButton = document.getElementById('generateUrlButton');
     const generatedUrlElem = document.getElementById('generatedUrl');
     const copyUrlButton = document.getElementById('copyUrlButton');
@@ -15,16 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to update certificate from data object
     function updateCertificate(data) {
         const name = data.name || 'ERROR';
-        const course = data.course || 'Outstanding Program';
-        const date = data.date || new Date().toISOString().slice(0, 10);
+        const years = data.years || '0';
 
         recipientNameElem.textContent = name;
-        // courseNameElem.textContent = course;
-        // completionDateElem.textContent = new Date(date).toLocaleDateString('en-US', {
-        //     year: 'numeric',
-        //     month: 'long',
-        //     day: 'numeric'
-        // });
+        yearsElem.textContent = years;
     }
 
     // Parse URL on load
@@ -40,8 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Pre-fill input fields if data was loaded from URL
             inputNameElem.value = data.name || '';
-            inputCourseElem.value = data.course || '';
-            inputDateElem.value = data.date || '';
+            inputYearsElem.value = data.years || '';
 
         } catch (e) {
             console.error("Error decoding or parsing URL data:", e);
@@ -51,15 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         // Set default values and pre-fill date input if no encoded data
         updateCertificate({});
-        inputDateElem.value = new Date().toISOString().slice(0, 10);
     }
 
     // Event listener for generating URL
     generateUrlButton.addEventListener('click', () => {
         const data = {
             name: inputNameElem.value || 'ERROR',
-            course: inputCourseElem.value || 'Outstanding Program',
-            date: inputDateElem.value || new Date().toISOString().slice(0, 10)
+            years: inputYearsElem.value || '0'
         };
 
         const jsonString = JSON.stringify(data);
@@ -115,7 +104,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log(result);
     });
-
-    // Set default date for input field
-    inputDateElem.value = new Date().toISOString().slice(0, 10);
 });
