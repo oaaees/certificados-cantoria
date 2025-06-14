@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to update certificate from data object
     function updateCertificate(data) {
         const name = data.name || 'ERROR';
-        const years = data.years || '0';
+        const years = data.years + ' Años' || '0 Años';
 
         recipientNameElem.textContent = name;
         yearsElem.textContent = years;
