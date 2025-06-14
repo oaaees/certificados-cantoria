@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const certificateElement = document.getElementById('certificate');
         // Clone the element to avoid modifying the displayed certificate for PDF generation
         const clonedElement = certificateElement.cloneNode(true);
-        clonedElement.classList.add('pdf-capture-temp'); // Add a class for specific styles if needed
+        clonedElement.classList.add('hola'); // Add a class for specific styles if needed
 
         // Append cloned element to body temporarily to ensure correct rendering by html2canvas
         document.body.appendChild(clonedElement);
@@ -98,12 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
             filename: 'CertificadoCantoria.pdf',
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: {
-                scale: 4, // Higher scale for better quality
+                scale: 2, // Higher scale for better quality
                 logging: true,
                 scrollY: -window.scrollY, // Capture content that is off-screen correctly
-                width: 1122,
-                x: 0,
-                height: 793 // A4 landscape dimensions in pixels at 96 DPI
+                width: clonedElement.offsetWidth * 0.8,
+                height: clonedElement.offsetHeight * 0.8
             },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
         }).from(clonedElement).save().finally(() => {

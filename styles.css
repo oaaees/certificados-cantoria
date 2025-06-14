@@ -40,11 +40,11 @@ body {
 }
 
 /* Styles for the cloned element during PDF generation */
-.pdf-capture-temp {
+.hola {
     position: fixed;
-    left: -9999px; /* Move off-screen */
+    left: 0; /* Move off-screen */
     top: 0;
-    max-width: 1122px !important; /* Allow full width for PDF capture */
+    max-width: none !important; /* Allow full width for PDF capture */
     margin: 0 !important;
     padding: 0 !important; /* Remove any extra padding that might affect A4 sizing */
     box-sizing: border-box; /* Maintain box model */
@@ -59,26 +59,71 @@ body {
 
 
 /* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    .certificate-container {
-        padding: 20px;
-        border-width: 5px;
-    }
-    .certificate-container::before,
-    .certificate-container::after {
-        width: 40px;
-        height: 40px;
-    }
-    h1 {
-        font-size: 2.5rem !important; /* Smaller font for title */
-    }
+@media (max-width: 320px) {
     h2 {
-        font-size: 1.5rem !important; /* Smaller font for name */
+        font-size: 0.8rem !important; /* Smaller font for name */
     }
-    p {
-        font-size: 1rem !important; /* Smaller font for text */
+
+    #recipientName {
+        top: 41%;
     }
 }
+
+@media (max-width: 376px) {
+    h2 {
+        font-size: 1rem !important; /* Smaller font for name */
+    }
+
+    #recipientName {
+        position: absolute;
+        top: 43%;
+    }
+}
+
+@media (max-width: 426px) {
+    h2 {
+        font-size: 1.1rem !important; /* Smaller font for name */
+    }
+
+    #recipientName {
+        position: absolute;
+        top: 44%;
+    }
+}
+
+@media (max-width: 769px) {
+    h2 {
+        font-size: 1.7rem !important; /* Smaller font for name */
+    }
+
+    #recipientName {
+        position: absolute;
+        top: 48%;
+    }
+}
+
+@media (max-width: 1024px) {
+    h2 {
+        font-size: 2rem !important; /* Smaller font for name */
+    }
+
+    #recipientName {
+        position: absolute;
+        top: 49%;
+    }
+}
+
+@media (max-width: 1440px) {
+    h2 {
+        font-size: 2rem !important; /* Smaller font for name */
+    }
+
+    #recipientName {
+        position: absolute;
+        top: 49%;
+    }
+}
+
 .control-panel {
     background-color: #ffffff;
     border-radius: 12px;
