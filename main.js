@@ -101,8 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 scale: 2, // Higher scale for better quality
                 logging: true,
                 scrollY: -window.scrollY, // Capture content that is off-screen correctly
-                width: clonedElement.offsetWidth * 0.8,
-                height: clonedElement.offsetHeight * 0.8
+                width: clonedElement.offsetWidth,
+                height: clonedElement.offsetHeight,
+                x: 0
             },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
         }).from(clonedElement).save().finally(() => {
